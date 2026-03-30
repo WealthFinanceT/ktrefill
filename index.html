@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTRefill - International Airtime, eSIM & Gift Cards | Direct Top-Up 24/7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand': {
+                            950: '#0a0a0a',
+                            900: '#111827',
+                            800: '#1f2937'
+                        },
+                        'accent': {
+                            gold: '#fbbf24',
+                            orange: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --color-brand-950: #0a0a0a;
+            --color-brand-900: #111827;
+            --color-brand-800: #1f2937;
+            --color-accent-gold: #fbbf24;
+            --color-accent-orange: #f59e0b;
+        }
+        .bg-brand-950 { background-color: var(--color-brand-950); }
+        .bg-brand-900 { background-color: var(--color-brand-900); }
+        .bg-brand-800 { background-color: var(--color-brand-800); }
+        .text-accent-gold { color: var(--color-accent-gold); }
+        .bg-accent-gold { background-color: var(--color-accent-gold); }
+        .bg-accent-orange { background-color: var(--color-accent-orange); }
+        .border-accent-gold { border-color: var(--color-accent-gold); }
+        .text-accent-orange { color: var(--color-accent-orange); }
+        .hover\:bg-accent-orange:hover { background-color: var(--color-accent-orange); }
+        .hover\:text-accent-orange:hover { color: var(--color-accent-orange); }
+        .shadow-accent-gold { box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+        .hover\:shadow-accent-gold\/25:hover { box-shadow: 0 0 20px rgba(251, 191, 36, 0.25); }
+        .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .animate-slide-up { animation: slideUp 0.8s ease-out; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-brand-950 text-white font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-brand-950/90 backdrop-blur-md border-b border-white/10 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-accent-gold to-accent-orange rounded-lg flex items-center justify-center">
+                        <i class="fas fa-bolt text-brand-900 text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold tracking-tight">KT<span class="text-accent-gold">REFILL</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#services" class="text-gray-300 hover:text-white transition-colors font-medium">Services</a>
+                    <a href="#why-us" class="text-gray-300 hover:text-white transition-colors font-medium">Why Direct Top-Up?</a>
+                    <a href="#coverage" class="text-gray-300 hover:text-white transition-colors font-medium">Coverage</a>
+                    <a href="#testimonials" class="text-gray-300 hover:text-white transition-colors font-medium">Reviews</a>
+                    <a href="#faq" class="text-gray-300 hover:text-white transition-colors font-medium">FAQ</a>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <div class="hidden lg:flex items-center gap-2 text-sm text-accent-gold">
+                        <span class="w-2 h-2 bg-green-500 rounded-full live-indicator"></span>
+                        24/7 Support Online
+                    </div>
+                    <button id="cart-button" class="relative text-white bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg transition-all flex items-center gap-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="text-xs">Cart</span>
+                        <span id="cart-count" class="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-[10px] font-bold flex items-center justify-center">0</span>
+                    </button>
+                    <a href="auth.html" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-sm">Sign In</a>
+                    <button class="bg-accent-gold hover:bg-accent-orange text-brand-900 px-6 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 flex items-center gap-2">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </button>
+                    <button class="md:hidden text-white text-2xl" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-900 border-t border-white/10">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block py-2 text-gray-300 hover:text-white">Services</a>
+                <a href="#why-us" class="block py-2 text-gray-300 hover:text-white">Why Direct Top-Up?</a>
+                <a href="#coverage" class="block py-2 text-gray-300 hover:text-white">Coverage</a>
+                <a href="#testimonials" class="block py-2 text-gray-300 hover:text-white">Reviews</a>
+                <a href="#faq" class="block py-2 text-gray-300 hover:text-white">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-brand-950">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/30 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-slide-up">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sm font-medium">
+                        <span class="w-2 h-2 bg-green-500 rounded-full live-indicator"></span>
+                        No Vouchers. Direct Instant Delivery.
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                        Global Connectivity <br>
+                        <span class="gradient-text">Made Instant</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
+                        Direct airtime top-up, eSIMs, and gift cards delivered instantly to 150+ countries. No PINs, no waiting—just seamless global connection.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-accent-gold hover:bg-accent-orange text-brand-900 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 flex items-center gap-3 shadow-lg shadow-accent-gold/25">
+                            <i class="fas fa-paper-plane"></i>
+                            Start Top-Up Now
+                        </button>
+                        <button class="border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:bg-white/5 flex items-center gap-3">
+                            <i class="fas fa-sim-card"></i>
+                            Get eSIM
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-6 pt-4">
+                        <div class="flex -space-x-3">
+                            <img src="https://flagcdn.com/w40/ng.png" class="w-10 h-10 rounded-full border-2 border-brand-950 object-cover" alt="NG">
+                            <img src="https://flagcdn.com/w40/gh.png" class="w-10 h-10 rounded-full border-2 border-brand-950 object-cover" alt="GH">
+                            <img src="https://flagcdn.com/w40/us.png" class="w-10 h-10 rounded-full border-2 border-brand-950 object-cover" alt="US">
+                            <img src="https://flagcdn.com/w40/gb.png" class="w-10 h-10 rounded-full border-2 border-brand-950 object-cover" alt="UK">
+                            <div class="w-10 h-10 rounded-full border-2 border-brand-950 bg-brand-800 flex items-center justify-center text-xs font-bold">+150</div>
+                        </div>
+                        <div class="text-sm text-gray-400">
+                            <span class="text-white font-bold">150+</span> Countries Supported
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative animate-float">
+                    <div class="relative z-10 bg-gradient-to-br from-brand-800 to-brand-900 rounded-3xl p-8 shadow-2xl border border-white/10">
+                        <div class="absolute -top-6 -right-6 bg-accent-gold text-brand-900 px-4 py-2 rounded-full font-bold text-sm shadow-lg">
+                            <i class="fas fa-bolt mr-1"></i> Instant
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                                <span class="text-gray-400">Select Service</span>
+                                <div class="flex gap-2">
+                                    <button id="service-topup" type="button" class="px-4 py-2 rounded-lg bg-accent-gold text-brand-900 font-medium text-sm">Top-Up</button>
+                                    <button id="service-esim" type="button" class="px-4 py-2 rounded-lg bg-white/10 text-gray-300 font-medium text-sm hover:bg-white/20">eSIM</button>
+                                </div>
+                            </div>
+
+                            <div id="topup-form" class="space-y-4">
+                                <div class="relative">
+                                    <label class="text-sm text-gray-400 mb-2 block">Country</label>
+                                    <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3 cursor-pointer hover:border-accent-gold/50 transition-colors" onclick="toggleCountryDropdown()">
+                                        <img src="https://flagcdn.com/w40/ng.png" class="w-8 h-6 rounded object-cover" id="selected-flag">
+                                        <span class="flex-1 font-medium" id="selected-country">Nigeria</span>
+                                        <i class="fas fa-chevron-down text-gray-400 transition-transform" id="dropdown-arrow"></i>
+                                    </div>
+                                    <div id="country-dropdown" class="absolute top-full left-0 right-0 mt-2 bg-brand-800 border border-white/10 rounded-xl shadow-xl max-h-64 overflow-y-auto z-50 hidden">
+                                        <div class="p-2">
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Nigeria" data-flag="ng" data-code="+234">
+                                                <img src="https://flagcdn.com/w20/ng.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Nigeria</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+234</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Ghana" data-flag="gh" data-code="+233">
+                                                <img src="https://flagcdn.com/w20/gh.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Ghana</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+233</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Kenya" data-flag="ke" data-code="+254">
+                                                <img src="https://flagcdn.com/w20/ke.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Kenya</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+254</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="South Africa" data-flag="za" data-code="+27">
+                                                <img src="https://flagcdn.com/w20/za.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">South Africa</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+27</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="United States" data-flag="us" data-code="+1">
+                                                <img src="https://flagcdn.com/w20/us.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">United States</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+1</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="United Kingdom" data-flag="gb" data-code="+44">
+                                                <img src="https://flagcdn.com/w20/gb.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">United Kingdom</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+44</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="India" data-flag="in" data-code="+91">
+                                                <img src="https://flagcdn.com/w20/in.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">India</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+91</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Bangladesh" data-flag="bd" data-code="+880">
+                                                <img src="https://flagcdn.com/w20/bd.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Bangladesh</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+880</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Pakistan" data-flag="pk" data-code="+92">
+                                                <img src="https://flagcdn.com/w20/pk.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Pakistan</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+92</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Philippines" data-flag="ph" data-code="+63">
+                                                <img src="https://flagcdn.com/w20/ph.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Philippines</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+63</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Brazil" data-flag="br" data-code="+55">
+                                                <img src="https://flagcdn.com/w20/br.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Brazil</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+55</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Canada" data-flag="ca" data-code="+1">
+                                                <img src="https://flagcdn.com/w20/ca.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Canada</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+1</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Australia" data-flag="au" data-code="+61">
+                                                <img src="https://flagcdn.com/w20/au.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Australia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+61</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Germany" data-flag="de" data-code="+49">
+                                                <img src="https://flagcdn.com/w20/de.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Germany</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+49</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="France" data-flag="fr" data-code="+33">
+                                                <img src="https://flagcdn.com/w20/fr.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">France</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+33</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Italy" data-flag="it" data-code="+39">
+                                                <img src="https://flagcdn.com/w20/it.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Italy</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+39</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Spain" data-flag="es" data-code="+34">
+                                                <img src="https://flagcdn.com/w20/es.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Spain</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+34</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Netherlands" data-flag="nl" data-code="+31">
+                                                <img src="https://flagcdn.com/w20/nl.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Netherlands</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+31</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Belgium" data-flag="be" data-code="+32">
+                                                <img src="https://flagcdn.com/w20/be.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Belgium</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+32</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Switzerland" data-flag="ch" data-code="+41">
+                                                <img src="https://flagcdn.com/w20/ch.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Switzerland</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+41</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Austria" data-flag="at" data-code="+43">
+                                                <img src="https://flagcdn.com/w20/at.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Austria</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+43</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Sweden" data-flag="se" data-code="+46">
+                                                <img src="https://flagcdn.com/w20/se.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Sweden</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+46</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Norway" data-flag="no" data-code="+47">
+                                                <img src="https://flagcdn.com/w20/no.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Norway</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+47</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Denmark" data-flag="dk" data-code="+45">
+                                                <img src="https://flagcdn.com/w20/dk.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Denmark</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+45</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Finland" data-flag="fi" data-code="+358">
+                                                <img src="https://flagcdn.com/w20/fi.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Finland</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+358</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Poland" data-flag="pl" data-code="+48">
+                                                <img src="https://flagcdn.com/w20/pl.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Poland</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+48</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Czech Republic" data-flag="cz" data-code="+420">
+                                                <img src="https://flagcdn.com/w20/cz.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Czech Republic</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+420</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Hungary" data-flag="hu" data-code="+36">
+                                                <img src="https://flagcdn.com/w20/hu.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Hungary</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+36</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Portugal" data-flag="pt" data-code="+351">
+                                                <img src="https://flagcdn.com/w20/pt.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Portugal</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+351</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Greece" data-flag="gr" data-code="+30">
+                                                <img src="https://flagcdn.com/w20/gr.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Greece</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+30</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Turkey" data-flag="tr" data-code="+90">
+                                                <img src="https://flagcdn.com/w20/tr.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Turkey</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+90</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Russia" data-flag="ru" data-code="+7">
+                                                <img src="https://flagcdn.com/w20/ru.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Russia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+7</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Ukraine" data-flag="ua" data-code="+380">
+                                                <img src="https://flagcdn.com/w20/ua.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Ukraine</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+380</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Egypt" data-flag="eg" data-code="+20">
+                                                <img src="https://flagcdn.com/w20/eg.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Egypt</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+20</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Morocco" data-flag="ma" data-code="+212">
+                                                <img src="https://flagcdn.com/w20/ma.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Morocco</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+212</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Tunisia" data-flag="tn" data-code="+216">
+                                                <img src="https://flagcdn.com/w20/tn.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Tunisia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+216</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Algeria" data-flag="dz" data-code="+213">
+                                                <img src="https://flagcdn.com/w20/dz.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Algeria</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+213</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Saudi Arabia" data-flag="sa" data-code="+966">
+                                                <img src="https://flagcdn.com/w20/sa.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Saudi Arabia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+966</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="UAE" data-flag="ae" data-code="+971">
+                                                <img src="https://flagcdn.com/w20/ae.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">UAE</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+971</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Israel" data-flag="il" data-code="+972">
+                                                <img src="https://flagcdn.com/w20/il.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Israel</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+972</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Jordan" data-flag="jo" data-code="+962">
+                                                <img src="https://flagcdn.com/w20/jo.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Jordan</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+962</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Lebanon" data-flag="lb" data-code="+961">
+                                                <img src="https://flagcdn.com/w20/lb.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Lebanon</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+961</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Thailand" data-flag="th" data-code="+66">
+                                                <img src="https://flagcdn.com/w20/th.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Thailand</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+66</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Vietnam" data-flag="vn" data-code="+84">
+                                                <img src="https://flagcdn.com/w20/vn.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Vietnam</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+84</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Indonesia" data-flag="id" data-code="+62">
+                                                <img src="https://flagcdn.com/w20/id.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Indonesia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+62</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Malaysia" data-flag="my" data-code="+60">
+                                                <img src="https://flagcdn.com/w20/my.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Malaysia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+60</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Singapore" data-flag="sg" data-code="+65">
+                                                <img src="https://flagcdn.com/w20/sg.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Singapore</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+65</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Japan" data-flag="jp" data-code="+81">
+                                                <img src="https://flagcdn.com/w20/jp.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Japan</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+81</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="South Korea" data-flag="kr" data-code="+82">
+                                                <img src="https://flagcdn.com/w20/kr.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">South Korea</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+82</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="China" data-flag="cn" data-code="+86">
+                                                <img src="https://flagcdn.com/w20/cn.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">China</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+86</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Mexico" data-flag="mx" data-code="+52">
+                                                <img src="https://flagcdn.com/w20/mx.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Mexico</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+52</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Argentina" data-flag="ar" data-code="+54">
+                                                <img src="https://flagcdn.com/w20/ar.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Argentina</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+54</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Chile" data-flag="cl" data-code="+56">
+                                                <img src="https://flagcdn.com/w20/cl.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Chile</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+56</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Colombia" data-flag="co" data-code="+57">
+                                                <img src="https://flagcdn.com/w20/co.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Colombia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+57</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Peru" data-flag="pe" data-code="+51">
+                                                <img src="https://flagcdn.com/w20/pe.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Peru</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+51</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Venezuela" data-flag="ve" data-code="+58">
+                                                <img src="https://flagcdn.com/w20/ve.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Venezuela</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+58</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Ecuador" data-flag="ec" data-code="+593">
+                                                <img src="https://flagcdn.com/w20/ec.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Ecuador</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+593</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Bolivia" data-flag="bo" data-code="+591">
+                                                <img src="https://flagcdn.com/w20/bo.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Bolivia</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+591</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Uruguay" data-flag="uy" data-code="+598">
+                                                <img src="https://flagcdn.com/w20/uy.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Uruguay</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+598</span>
+                                            </div>
+                                            <div class="country-option flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 cursor-pointer transition-colors" data-country="Paraguay" data-flag="py" data-code="+595">
+                                                <img src="https://flagcdn.com/w20/py.png" class="w-5 h-4 rounded object-cover">
+                                                <span class="text-sm font-medium">Paraguay</span>
+                                                <span class="text-xs text-gray-400 ml-auto">+595</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="relative">
+                                    <label class="text-sm text-gray-400 mb-2 block">Phone Number</label>
+                                    <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+                                        <span class="text-gray-400" id="country-code">+234</span>
+                                        <input type="tel" placeholder="801 234 5678" class="bg-transparent flex-1 outline-none text-white placeholder-gray-500">
+                                    </div>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <label class="text-sm text-gray-400 font-medium">Amount</label>
+                                        <div class="flex gap-2">
+                                            <button id="currency-naira" type="button" class="px-3 py-1 rounded-md bg-accent-gold text-brand-900 text-xs font-semibold">NGN</button>
+                                            <button id="currency-dollar" type="button" class="px-3 py-1 rounded-md bg-white/10 text-white text-xs font-semibold hover:bg-white/20">USD</button>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-3 mb-3">
+                                        <button type="button" class="amount-button py-3 rounded-xl bg-white/5 border border-white/10 hover:border-accent-gold hover:text-accent-gold transition-all font-medium" data-value-naira="1000">₦1,000</button>
+                                        <button type="button" class="amount-button py-3 rounded-xl bg-accent-gold/20 border border-accent-gold text-accent-gold font-medium" data-value-naira="5000">₦5,000</button>
+                                        <button type="button" class="amount-button py-3 rounded-xl bg-white/5 border border-white/10 hover:border-accent-gold hover:text-accent-gold transition-all font-medium" data-value-naira="10000">₦10,000</button>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <input id="custom-amount" type="number" min="1" placeholder="Custom amount" class="bg-white/10 border border-white/10 text-white px-4 py-3 rounded-xl outline-none flex-1" />
+                                        <span id="currency-symbol" class="text-white text-sm">₦</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="topup-submit" class="w-full bg-gradient-to-r from-accent-gold to-accent-orange text-brand-900 py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-accent-gold/25 transition-all transform hover:scale-[1.02]">
+                                Proceed to Payment
+                            </button>
+
+                            <div id="esim-form" class="hidden space-y-4 mt-4 bg-white/5 border border-white/10 p-4 rounded-xl">
+                                <div class="pb-2 border-b border-white/10 mb-3">
+                                    <div class="text-sm text-gray-400">eSIM - Instant Activation</div>
+                                    <div class="text-2xl font-bold">$39.00 <span class="text-xs line-through text-gray-400">$50.00</span></div>
+                                </div>
+                                <input id="esim-name" type="text" placeholder="Name" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none w-full" />
+                                <input id="esim-phone-model" type="text" placeholder="Phone model (e.g. iPhone 14)" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none w-full" />
+                                <input id="esim-imei" type="text" placeholder="IMEI (Dial *#06#)" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none w-full" />
+                                <input id="esim-email" type="email" placeholder="Email address" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none w-full" />
+                                <input id="esim-whatsapp" type="tel" placeholder="WhatsApp number" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none w-full" />
+                                <input id="esim-eid" type="text" placeholder="EID" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none w-full" />
+                                <div class="flex items-center gap-3">
+                                    <input id="esim-quantity" type="number" min="1" value="1" class="bg-transparent border border-white/10 text-white px-4 py-3 rounded-xl outline-none flex-1" />
+                                    <span class="text-gray-400">pcs</span>
+                                </div>
+                                <button id="esim-add-cart" class="w-full bg-purple-600/90 hover:bg-purple-500 text-white py-3 rounded-xl font-bold">Add to cart</button>
+                                <div class="text-xs text-gray-400">Category: eSIM</div>
+                            </div>
+
+                            <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                                <i class="fas fa-shield-alt text-green-500"></i>
+                                256-bit SSL Secure Payment
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -bottom-8 -left-8 w-24 h-24 bg-brand-600/50 rounded-full blur-2xl"></div>
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-accent-gold/20 rounded-full blur-2xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart-page" class="fixed inset-0 bg-black/70 items-center justify-center z-50 hidden p-4">
+        <div class="bg-brand-900 border border-white/10 rounded-2xl w-full max-w-lg p-6 relative">
+            <button id="cart-close" class="absolute top-4 right-4 text-gray-300 hover:text-white"><i class="fas fa-times"></i></button>
+            <h2 class="text-2xl font-bold mb-3">Your Cart</h2>
+            <div id="cart-items" class="space-y-3 min-h-[120px] text-gray-200">
+                <p class="text-gray-400">No items in cart yet.</p>
+            </div>
+            <div id="cart-auth-message" class="text-sm text-yellow-300 mt-3">Please sign in to access the cart and checkout.</div>
+            <button id="checkout-btn" class="mt-4 w-full bg-accent-gold text-brand-900 py-3 rounded-xl font-bold">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Trust Badges -->
+    <section class="py-12 bg-brand-900/50 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-shield-alt text-2xl text-accent-gold"></i>
+                    <span class="font-semibold">Bank-Level Security</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-clock text-2xl text-accent-gold"></i>
+                    <span class="font-semibold">24/7 Human Support</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-bolt text-2xl text-accent-gold"></i>
+                    <span class="font-semibold">Instant Delivery</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-globe text-2xl text-accent-gold"></i>
+                    <span class="font-semibold">150+ Countries</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <span class="text-accent-gold font-semibold tracking-wider uppercase text-sm">Our Services</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Everything You Need to Stay Connected</h2>
+                <p class="text-gray-400 text-lg">From instant airtime to global data eSIMs, we deliver digital connectivity solutions without the hassle of physical vouchers.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Airtime Top-Up -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-mobile-alt text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">International Airtime</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Direct top-up to any mobile number in 150+ countries. No PINs, no scratching cards—just instant credit delivery.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Instant delivery</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> All major carriers</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Bulk discounts</li>
+                    </ul>
+                    <button class="text-accent-gold font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Top-Up Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Data eSIM -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group cursor-pointer" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-wifi text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Data eSIMs</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Travel without roaming charges. Get high-speed data in 100+ countries with QR code activation in minutes.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Instant QR activation</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Regional & global plans</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> 5G where available</li>
+                    </ul>
+                    <button class="text-accent-gold font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Get eSIM <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Physical SIM -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group cursor-pointer" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-sim-card text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Physical SIM Cards</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">International carrier SIM cards delivered to your door. Perfect for long-term stays or backup connectivity.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Worldwide shipping</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Pre-activated options</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Multi-size SIMs</li>
+                    </ul>
+                    <button class="text-accent-gold font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Order SIM <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Gift Cards -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-gift text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Gift Cards</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Apple, Google Play, Steam, and more. Digital codes delivered instantly to your email or dashboard.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> 50+ brands</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Instant email delivery</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> No expiration</li>
+                    </ul>
+                    <button class="text-accent-gold font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Buy Gift Card <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Virtual Cards -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group cursor-pointer" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-credit-card text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Virtual Cards</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Secure virtual Visa/Mastercard for online purchases. Control spending with disposable card numbers.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Instant generation</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Fraud protection</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Multi-currency</li>
+                    </ul>
+                    <button class="text-accent-gold font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Create Card <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Carrier eSIM -->
+                <div class="service-card glass-card rounded-3xl p-8 scroll-reveal group cursor-pointer" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-broadcast-tower text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Carrier eSIMs</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Direct carrier partnerships for local rates without the local SIM. Keep your number, add local data.</p>
+                    <ul class="space-y-2 mb-6 text-sm text-gray-300">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Local rates</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Keep WhatsApp number</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Dual SIM support</li>
+                    </ul>
+                    <button class="text-accent-gold font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Explore Plans <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Direct Top-Up vs Vouchers -->
+    <section id="why-us" class="py-24 bg-brand-900/30 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal">
+                    <span class="text-accent-gold font-semibold tracking-wider uppercase text-sm">The KTRefill Advantage</span>
+                    <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Why Direct Top-Up Beats Vouchers</h2>
+                    <p class="text-gray-400 text-lg mb-8">While competitors sell scratch cards and PINs, we deliver direct to your phone. Here's why that matters:</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bolt text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Instant vs. Manual</h4>
+                                <p class="text-gray-400">Direct top-up hits your phone in seconds. Vouchers require dialing codes, risking errors and delays.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-shield-alt text-blue-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Secure vs. Risky</h4>
+                                <p class="text-gray-400">No physical cards to lose or scratch codes to misread. Encrypted delivery straight to the carrier.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-headset text-purple-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">24/7 Support vs. None</h4>
+                                <p class="text-gray-400">Stuck with a voucher at midnight? Good luck. Our team is here round-the-clock to help with any issue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative scroll-reveal">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent-gold to-purple-600 rounded-3xl blur-2xl opacity-20"></div>
+                    <div class="relative bg-brand-950 border border-white/10 rounded-3xl p-8">
+                        <div class="flex items-center justify-between mb-8 pb-8 border-b border-white/10">
+                            <div class="text-center flex-1">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">30s</div>
+                                <div class="text-sm text-gray-400">Average Delivery</div>
+                            </div>
+                            <div class="w-px h-12 bg-white/10"></div>
+                            <div class="text-center flex-1">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">0%</div>
+                                <div class="text-sm text-gray-400">Error Rate</div>
+                            </div>
+                            <div class="w-px h-12 bg-white/10"></div>
+                            <div class="text-center flex-1">
+                                <div class="text-3xl font-bold text-accent-gold mb-1">24/7</div>
+                                <div class="text-sm text-gray-400">Human Support</div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                    <span class="font-medium">Direct Carrier Integration</span>
+                                </div>
+                                <span class="text-green-500 text-sm">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                    <span class="font-medium">Real-time Transaction Tracking</span>
+                                </div>
+                                <span class="text-green-500 text-sm">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                    <span class="font-medium">Failed Transaction Auto-Retry</span>
+                                </div>
+                                <span class="text-green-500 text-sm">Active</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                                    <span class="font-medium">Instant Refund on Failure</span>
+                                </div>
+                                <span class="text-green-500 text-sm">Active</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-accent-gold/10 border border-accent-gold/20 rounded-xl flex items-center gap-3">
+                            <i class="fas fa-info-circle text-accent-gold text-xl"></i>
+                            <p class="text-sm text-gray-300">Voucher resellers can't offer these guarantees. <span class="text-accent-gold font-semibold">We can.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Coverage -->
+    <section id="coverage" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <span class="text-accent-gold font-semibold tracking-wider uppercase text-sm">Global Reach</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Connected to 150+ Countries</h2>
+                <p class="text-gray-400 text-lg">From Lagos to London, Accra to Atlanta—send airtime and data anywhere your loved ones are.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-12 scroll-reveal">
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/ng.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Nigeria">
+                    <div class="font-semibold text-sm">Nigeria</div>
+                    <div class="text-xs text-gray-400">MTN, Airtel, Glo</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/gh.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Ghana">
+                    <div class="font-semibold text-sm">Ghana</div>
+                    <div class="text-xs text-gray-400">MTN, Vodafone</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/ke.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Kenya">
+                    <div class="font-semibold text-sm">Kenya</div>
+                    <div class="text-xs text-gray-400">Safaricom, Airtel</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/za.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="South Africa">
+                    <div class="font-semibold text-sm">South Africa</div>
+                    <div class="text-xs text-gray-400">Vodacom, MTN</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/us.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="USA">
+                    <div class="font-semibold text-sm">USA</div>
+                    <div class="text-xs text-gray-400">AT&T, T-Mobile</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/gb.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="UK">
+                    <div class="font-semibold text-sm">UK</div>
+                    <div class="text-xs text-gray-400">EE, Vodafone</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/in.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="India">
+                    <div class="font-semibold text-sm">India</div>
+                    <div class="text-xs text-gray-400">Jio, Airtel</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/bd.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Bangladesh">
+                    <div class="font-semibold text-sm">Bangladesh</div>
+                    <div class="text-xs text-gray-400">Grameenphone</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/pk.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Pakistan">
+                    <div class="font-semibold text-sm">Pakistan</div>
+                    <div class="text-xs text-gray-400">Jazz, Zong</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/ph.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Philippines">
+                    <div class="font-semibold text-sm">Philippines</div>
+                    <div class="text-xs text-gray-400">Globe, Smart</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer">
+                    <img src="https://flagcdn.com/w80/br.png" class="w-12 h-8 mx-auto mb-2 rounded object-cover country-flag" alt="Brazil">
+                    <div class="font-semibold text-sm">Brazil</div>
+                    <div class="text-xs text-gray-400">Vivo, Claro</div>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center hover:bg-white/10 transition-colors cursor-pointer bg-accent-gold/10 border-accent-gold/30">
+                    <div class="w-12 h-8 mx-auto mb-2 rounded bg-brand-800 flex items-center justify-center text-xs font-bold">+140</div>
+                    <div class="font-semibold text-sm text-accent-gold">More Countries</div>
+                    <div class="text-xs text-gray-400">View All</div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="border-2 border-white/20 hover:border-accent-gold text-white px-8 py-3 rounded-full font-semibold transition-all hover:bg-white/5">
+                    View Full Coverage Map
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-24 bg-brand-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <span class="text-accent-gold font-semibold tracking-wider uppercase text-sm">Simple Process</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Top-Up in 3 Easy Steps</h2>
+                <p class="text-gray-400 text-lg">No registration required for single purchases. Create an account to save favorites and earn rewards.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute top-1/2 left-1/3 right-1/3 h-0.5 bg-gradient-to-r from-transparent via-accent-gold to-transparent transform -translate-y-1/2"></div>
+                
+                <div class="relative scroll-reveal text-center">
+                    <div class="w-20 h-20 bg-brand-800 border-2 border-accent-gold rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-3xl font-bold text-accent-gold">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Select Destination</h3>
+                    <p class="text-gray-400">Choose the country and enter the phone number. We automatically detect the carrier.</p>
+                </div>
+
+                <div class="relative scroll-reveal text-center" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 bg-brand-800 border-2 border-accent-gold rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-3xl font-bold text-accent-gold">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Choose Amount</h3>
+                    <p class="text-gray-400">Pick from preset amounts or enter custom value. See real-time exchange rates and fees upfront.</p>
+                </div>
+
+                <div class="relative scroll-reveal text-center" style="transition-delay: 200ms;">
+                    <div class="w-20 h-20 bg-brand-800 border-2 border-accent-gold rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                        <span class="text-3xl font-bold text-accent-gold">3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Pay & Deliver</h3>
+                    <p class="text-gray-400">Pay securely with card, crypto, or bank transfer. Airtime arrives in seconds with confirmation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <span class="text-accent-gold font-semibold tracking-wider uppercase text-sm">Testimonials</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">What Our Customers Say</h2>
+                <p class="text-gray-400 text-lg">Join thousands of satisfied users who trust KTRefill for their international connectivity needs.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card glass-card rounded-2xl p-8 scroll-reveal">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"I love how simple and smooth the dashboard is. I can track all my transactions and request withdrawals anytime. The 24/7 support actually answers in minutes, not hours."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-lg">JK</div>
+                        <div>
+                            <div class="font-bold">Julia Keys</div>
+                            <div class="text-sm text-gray-400 flex items-center gap-2">
+                                <img src="https://flagcdn.com/w20/gb.png" class="w-4 h-3 rounded-sm" alt="UK"> United Kingdom
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card glass-card rounded-2xl p-8 scroll-reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"KT Refill has made it so easy to recharge my family's phones back home in Ghana. Transactions are fast and I've never had any issues. The direct top-up is way better than buying vouchers!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center font-bold text-lg">SO</div>
+                        <div>
+                            <div class="font-bold">Samuel O.</div>
+                            <div class="text-sm text-gray-400 flex items-center gap-2">
+                                <img src="https://flagcdn.com/w20/ca.png" class="w-4 h-3 rounded-sm" alt="Canada"> Canada
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card glass-card rounded-2xl p-8 scroll-reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center gap-1 mb-4">
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <i class="fas fa-star text-accent-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"As a frequent traveler, the eSIM service has been a game-changer. I landed in Europe and got connected in less than 5 minutes. No more hunting for SIM cards at airports!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center font-bold text-lg">CM</div>
+                        <div>
+                            <div class="font-bold">Carlos Moon</div>
+                            <div class="text-sm text-gray-400 flex items-center gap-2">
+                                <img src="https://flagcdn.com/w20/us.png" class="w-4 h-3 rounded-sm" alt="USA"> USA
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center scroll-reveal">
+                <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10">
+                    <span class="text-accent-gold font-bold text-2xl">4.9/5</span>
+                    <span class="text-gray-400">from over 2,000 reviews on</span>
+                    <div class="flex gap-2 ml-2">
+                        <i class="fas fa-star text-accent-gold"></i>
+                        <span class="font-semibold">TrustPilot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-brand-900/30">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 scroll-reveal">
+                <span class="text-accent-gold font-semibold tracking-wider uppercase text-sm">Support</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-6">Frequently Asked Questions</h2>
+                <p class="text-gray-400 text-lg">Can't find what you're looking for? Our 24/7 support team is always ready to help.</p>
+            </div>
+
+            <div class="space-y-4 scroll-reveal">
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-lg">What is KTRefill?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5 text-gray-400 leading-relaxed">
+                        KTRefill is a digital service platform providing instant international phone top-ups, foreign SIM cards (physical and eSIM), and global gift cards. Unlike voucher resellers, we deliver directly to the recipient's phone or email within seconds.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-lg">Who can use KTRefill services?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5 text-gray-400 leading-relaxed">
+                        Our services are designed for individuals and businesses needing international communication solutions. This includes travelers, students abroad, remote workers, diaspora communities sending support home, and resellers looking for reliable API access.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-lg">What countries do you support?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5 text-gray-400 leading-relaxed">
+                        We support over 150 countries across Africa, Asia, Europe, the Americas, and Oceania. Major markets include Nigeria, Ghana, Kenya, India, Bangladesh, Philippines, USA, UK, and Brazil. If you don't see your country listed, contact our 24/7 support—we're constantly expanding.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-lg">What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5 text-gray-400 leading-relaxed">
+                        We accept all major credit/debit cards (Visa, Mastercard, Amex), bank transfers, PayPal, and cryptocurrency (Bitcoin, Ethereum, USDT). For business accounts, we also offer invoice payment terms with NET-30 options.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-lg">How is direct top-up different from vouchers?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5 text-gray-400 leading-relaxed">
+                        Vouchers require you to buy a PIN code, then manually dial a USSD code to redeem—prone to errors and delays. Direct top-up sends credit instantly to the phone number with zero action needed from the recipient. It's faster, more secure, and trackable in real-time.
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-lg">How can I contact KTRefill?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-content px-6 pb-5 text-gray-400 leading-relaxed">
+                        We offer true 24/7 human support via WhatsApp (+234 9154635573), live chat on our website, email (support@ktrefill.com), and phone. Average response time is under 2 minutes for chat and WhatsApp. For complex issues, we schedule video calls.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center p-8 glass-card rounded-2xl scroll-reveal">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-3 h-3 bg-green-500 rounded-full live-indicator"></div>
+                    <span class="text-green-500 font-semibold">Support Online Now</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Still have questions?</h3>
+                <p class="text-gray-400 mb-6">Our team is available 24/7 to help you with any inquiries.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/2349154635573" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-semibold transition-all flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        WhatsApp Us
+                    </a>
+                    <button class="border-2 border-white/20 hover:border-accent-gold text-white px-6 py-3 rounded-full font-semibold transition-all">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Email Support
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-800 to-brand-900"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-reveal">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Go Direct?</h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">Skip the vouchers. Skip the waiting. Join thousands who trust KTRefill for instant international top-ups and eSIMs.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="bg-accent-gold hover:bg-accent-orange text-brand-900 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-accent-gold/25 flex items-center gap-2">
+                    <i class="fas fa-rocket"></i>
+                    Start Your First Top-Up
+                </button>
+                <button class="bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center gap-2">
+                    <i class="fas fa-calculator"></i>
+                    Check Rates
+                </button>
+            </div>
+
+            <div class="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-400">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    No hidden fees
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    Instant delivery guarantee
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    24/7 human support
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-950 border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-accent-gold to-accent-orange rounded-lg flex items-center justify-center">
+                            <i class="fas fa-bolt text-brand-900 text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold">KT<span class="text-accent-gold">REFILL</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">KTRefill is a digital service platform providing instant international phone top-ups, foreign SIM cards (physical and eSIM), and global gift cards.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-gold hover:text-brand-900 transition-all">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-gold hover:text-brand-900 transition-all">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-gold hover:text-brand-900 transition-all">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-gold hover:text-brand-900 transition-all">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Useful Links</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Support Center</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Services</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Airtime Top-Up</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Data eSIM</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Physical SIM</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Gift Cards</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">Virtual Cards</a></li>
+                        <li><a href="#" class="hover:text-accent-gold transition-colors">API for Resellers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Information</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-accent-gold/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">24/7 Hotline</div>
+                                <div class="font-semibold text-white">+234 9154635573</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-accent-gold/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">Email Support</div>
+                                <div class="font-semibold text-white">support@ktrefill.com</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-full bg-accent-gold/20 flex items-center justify-center flex-shrink-0">
+                                <i class="fab fa-whatsapp text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm text-gray-500">WhatsApp</div>
+                                <div class="font-semibold text-white">+234 9154635573</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">© 2024 KTRefill. All rights reserved. Licensed by relevant financial authorities.</p>
+                <div class="flex items-center gap-4">
+                    <i class="fab fa-cc-visa text-3xl text-gray-400"></i>
+                    <i class="fab fa-cc-mastercard text-3xl text-gray-400"></i>
+                    <i class="fab fa-cc-paypal text-3xl text-gray-400"></i>
+                    <i class="fab fa-bitcoin text-3xl text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button onclick="scrollToTop()" class="fixed bottom-8 right-8 w-12 h-12 bg-accent-gold hover:bg-accent-orange text-brand-900 rounded-full shadow-lg flex items-center justify-center transition-all transform hover:scale-110 z-40 opacity-0 pointer-events-none" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
