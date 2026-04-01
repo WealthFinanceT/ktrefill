@@ -4,10 +4,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleMobileMenu() {
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenu.classList.toggle('hidden');
+        
+        // Prevent body scroll when menu is open
+        if (!mobileMenu.classList.contains('hidden')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
     }
 
     // Make toggleMobileMenu globally available
     window.toggleMobileMenu = toggleMobileMenu;
+
+    // Close mobile menu on link click
+    const mobileLinks = document.querySelectorAll('#mobile-menu a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMobileMenu();
+        });
+    });
 
     // Cart functionality
     const cartItemsContainer = document.getElementById('cart-items-container');
